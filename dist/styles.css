@@ -38,6 +38,44 @@ button { cursor: pointer; }
 .primary-btn:hover, .next-btn:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(246,189,82,.34); }
 .ghost-btn { background: rgba(255,255,255,.1); color: white; border: 1px solid rgba(255,255,255,.24); backdrop-filter: blur(8px); }
 .intro-note { color: #a8bac8; font-size: .88rem; margin-top: 20px; }
+.intro-link { display: inline-flex; align-items: center; text-decoration: none; }
+
+.reading-section { padding: clamp(58px, 7vw, 110px) 22px; scroll-margin-top: 78px; }
+.reading-shell { width: min(1120px, 100%); margin: 0 auto; }
+.section-label { color: var(--red); font-size: .78rem; font-weight: 800; letter-spacing: .16em; margin-bottom: 13px; }
+.reading-section h2 { font-family: Unbounded, sans-serif; font-size: clamp(2rem, 5vw, 3.6rem); letter-spacing: -.05em; line-height: 1.1; margin: 0 0 22px; }
+.section-lead { max-width: 760px; color: #586979; font-size: 1.08rem; line-height: 1.7; margin: 0 0 30px; }
+.about-section { background: #fffaf0; }
+.prose { max-width: 850px; font-size: 1.06rem; line-height: 1.85; }
+.prose p { margin: 0 0 1.25em; }
+.text-link { display: inline-flex; margin-top: 15px; color: #0b5a63; font-weight: 800; text-decoration-thickness: 2px; text-underline-offset: 5px; }
+.explanations-section { background: #f1eee5; }
+.content-index { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin-bottom: 34px; }
+.content-index a { padding: 12px 14px; border: 1px solid var(--line); border-radius: 12px; background: #fffaf0; color: var(--ink); text-decoration: none; font-weight: 700; font-size: .88rem; }
+.content-index a:hover, .content-index a:focus-visible { border-color: var(--turquoise); background: #e9f7f3; }
+.explanation-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+.info-card { min-width: 0; padding: clamp(21px, 3vw, 32px); border: 1px solid var(--line); border-radius: 22px; background: #fffaf0; box-shadow: 0 10px 35px rgba(7,27,47,.06); scroll-margin-top: 96px; }
+.card-number { color: #b16c20; font-size: .77rem; font-weight: 800; letter-spacing: .13em; margin-bottom: 14px; }
+.info-card h3, .legend-card h3 { font-family: Unbounded, sans-serif; font-size: clamp(1.15rem, 2vw, 1.45rem); line-height: 1.4; margin: 0 0 16px; }
+.info-card p, .info-card li, .legend-card p { line-height: 1.72; }
+.info-card p { margin: 0 0 14px; }
+.info-card ul, .info-card ol { padding-left: 1.4em; margin: 0 0 16px; }
+.info-card li { margin-bottom: 7px; }
+.info-card .callout { padding: 13px 16px; border-left: 4px solid var(--turquoise); border-radius: 8px; background: #e8f7f3; }
+.info-card .source-note { margin: 20px 0 0; color: #687987; font-size: .8rem; }
+.table-wrap { overflow-x: auto; margin: 14px 0 22px; }
+.info-card table { width: 100%; border-collapse: collapse; font-size: .87rem; }
+.info-card th, .info-card td { padding: 10px; border: 1px solid var(--line); text-align: left; vertical-align: top; }
+.info-card th { background: #e8f1ee; }
+.legends-section { background: var(--ink); color: white; }
+.legends-section .section-label { color: var(--gold); }
+.legends-section .section-lead { color: #b5c9d5; }
+.legend-list { display: grid; gap: 14px; }
+.legend-card { display: grid; grid-template-columns: 54px 1fr; gap: 18px; padding: clamp(20px, 3vw, 30px); border: 1px solid rgba(255,255,255,.12); border-radius: 20px; background: rgba(255,255,255,.055); }
+.legend-number { color: var(--gold); font: 700 1.4rem Unbounded, sans-serif; }
+.legend-card h3 { color: var(--gold); }
+.legend-card p { margin: 0; color: #d3e0e8; }
+.legends-section .text-link { color: var(--gold); }
 
 .app { min-height: 100svh; background: radial-gradient(circle at 80% 0, rgba(54,192,177,.08), transparent 28%), var(--paper); }
 .topbar { height: 78px; background: var(--ink); color: white; display: flex; align-items: center; justify-content: space-between; padding: 0 24px; position: sticky; top: 0; z-index: 20; box-shadow: 0 5px 20px rgba(0,0,0,.14); }
@@ -68,7 +106,7 @@ button { cursor: pointer; }
 .mission-number { width: 32px; height: 32px; border-radius: 10px; display: grid; place-items: center; background: rgba(255,255,255,.08); font-size: .82rem; font-weight: 800; }
 .mission-name { font-size: .82rem; font-weight: 700; line-height: 1.2; }
 .mission-state { font-size: .75rem; color: var(--gold); }
-.archive-btn { margin-top: 20px; width: 100%; display: flex; gap: 11px; align-items: center; border: 1px solid rgba(246,189,82,.2); border-radius: 14px; padding: 12px; color: white; background: rgba(246,189,82,.07); text-align: left; }
+.archive-btn { margin-top: 20px; width: 100%; display: flex; gap: 11px; align-items: center; border: 1px solid rgba(246,189,82,.2); border-radius: 14px; padding: 12px; color: white; background: rgba(246,189,82,.07); text-align: left; text-decoration: none; }
 .archive-btn > span:first-child { color: var(--gold); font-size: 1.4rem; }
 .archive-btn small { display: block; color: #a9bac6; margin-top: 2px; }
 
@@ -181,6 +219,8 @@ button { cursor: pointer; }
 @keyframes pulse { 50% { box-shadow: 0 0 0 12px rgba(246,189,82,.06); } }
 
 @media (max-width: 850px) {
+  .content-index { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .explanation-list { grid-template-columns: 1fr; }
   .mobile-menu-btn { display: block; }
   .game-layout { grid-template-columns: 1fr; }
   .sidebar { position: fixed; top: 78px; bottom: 0; left: 0; height: auto; width: min(310px, 88vw); z-index: 18; transform: translateX(-105%); transition: transform .25s; box-shadow: 16px 0 40px rgba(0,0,0,.2); }
@@ -192,9 +232,11 @@ button { cursor: pointer; }
 }
 
 @media (max-width: 560px) {
+  .content-index { grid-template-columns: 1fr; }
+  .legend-card { grid-template-columns: 1fr; gap: 8px; }
   .intro-shade { background: linear-gradient(0deg, rgba(3,15,28,.98) 0%, rgba(3,15,28,.78) 72%, rgba(3,15,28,.25)); }
   .intro-content { align-self: end; padding-bottom: 48px; }
-  .intro-content h1 { font-size: clamp(2rem, 12vw, 3.4rem); }
+  .intro-content h1 { font-size: clamp(1.7rem, 8.8vw, 2.7rem); overflow-wrap: anywhere; }
   .topbar { padding: 0 12px; }
   .brand > span:not(.brand-mark), .heritage-score small { display: none; }
   .heritage-score { display: flex; padding: 8px 11px; }

@@ -58,7 +58,8 @@ function updateChrome() {
 
 function beginGame(continueSaved=false) {
   if (!continueSaved) { state={...defaultState}; saveState(); }
-  $('#intro').classList.add('hidden'); $('#gameApp').classList.remove('hidden');
+  $('#intro').classList.add('hidden'); $('#about').classList.add('hidden'); $('#gameApp').classList.remove('hidden');
+  window.scrollTo(0, 0);
   updateChrome(); renderMission();
 }
 
@@ -158,7 +159,7 @@ function analyzeWhip(){ const b=currentBuilder(); state.builder=b; saveState(); 
 
 function renderLegacy(){ const done=state.completed.includes(8); $('#missionContent').innerHTML=missionHero(8,'Саяхат соңындағы ең маңызды шешім өзіңде. Мұраны келесі ұрпаққа қалай жеткізер едің?')+`<div class="task-panel final-panel" id="legacyPanel">${done?certificateView():`<div class="final-emblem">✦</div><h3>Сен нені аманат етер едің?</h3><p>«Егер сен қамшының тарихын келесі ұрпаққа жеткізсең, оның қандай мағынасын сақтап қалар едің?»</p><textarea id="legacyText" maxlength="420" placeholder="Мен келесі ұрпаққа..."></textarea><div class="actions-row"><span class="hint">Кемінде 20 таңба</span><button class="next-btn" id="finishBtn">Аманатты тапсыру</button></div>`}</div>`; if(!done) $('#finishBtn').onclick=finishLegacy; }
 function finishLegacy(){ const text=$('#legacyText').value.trim(); if(text.length<20){ playTone('bad'); toast('Ойыңды тағы бір сөйлеммен толықтыр.'); return;} state.legacy=text; completeMission(8,'Ұлттық мұра сақшысы'); $('#legacyPanel').innerHTML=certificateView(); }
-function certificateView(){ const secretDone=state.achievements.includes('Құпияны ашушы'); return `<div class="certificate"><div class="final-emblem">🏆</div><p>Виртуалды мәртебе</p><h3>ҰЛЫ ДАЛА МҰРАСЫН ҚОРҒАУШЫ</h3><div class="certificate-name">QAMSHY зерттеушісі</div><p>«${escapeHtml(state.legacy || 'Мәдени мұраны танып, құрметпен сақтаймын.')}»</p><div class="achievement-strip">${state.achievements.map(x=>`<span class="achievement">✦ ${x}</span>`).join('')}</div><p class="hint">Жиналған ұпай: ${state.score}${secretDone?' / 1300':' / 1100'}</p><div class="intro-actions" style="justify-content:center"><button class="primary-btn" id="secretBtn">${secretDone?'Құпия деңгей аяқталды':'Құпия деңгейді ашу'}</button><button class="choice-btn" id="restartBtn">Ойынды қайта бастау</button></div></div>`; }
+function certificateView(){ const secretDone=state.achievements.includes('Құпияны ашушы'); return `<div class="certificate"><div class="final-emblem">🏆</div><p>Виртуалды мәртебе</p><h3>ҰЛЫ ДАЛА МҰРАСЫН ҚОРҒАУШЫ</h3><div class="certificate-name">QAMSHY зерттеушісі</div><p>«${escapeHtml(state.legacy || 'Мәдени мұраны танып, құрметпен сақтаймын.')}»</p><div class="achievement-strip">${state.achievements.map(x=>`<span class="achievement">✦ ${x}</span>`).join('')}</div><p class="hint">Жиналған ұпай: ${state.score}${secretDone?' / 1300':' / 1100'}</p><div class="intro-actions" style="justify-content:center"><button class="primary-btn" id="secretBtn">${secretDone?'Құпия деңгей аяқталды':'Құпия деңгейді ашу'}</button><button class="choice-btn" id="restartBtn">Ойынды қайта бастау</button></div><p><a class="text-link" href="#explanations">Түсіндірмені оқу →</a> · <a class="text-link" href="#legends">Аңыздарды оқу →</a></p></div>`; }
 
 function archiveView(){ openModal(`<h2 id="modalTitle">Құпия архив</h2><p>Әр миссиядан кейін ашылатын тарихи-мәдени деректер.</p><div class="archive-list">${missions.map((m,i)=>state.archives.includes(i)?`<div class="archive-entry"><strong>${i+1}. ${m.title}</strong>${m.archive}</div>`:`<div class="archive-entry locked-entry"><strong>🔒 ${i+1}-дерек</strong>Миссияны аяқтағанда ашылады.</div>`).join('')}</div><p class="hint" style="margin-top:20px">Материалды дайындауда пайдаланылған ашық деректер: <a href="https://e-history.kz/kz/seo-materials/show/29090" target="_blank" rel="noopener">Қазақстан тарихы порталы</a> және <a href="https://el.kz/content-3421_2675/" target="_blank" rel="noopener">El.kz материалы</a>.</p>`); }
 function achievementsView(){ openModal(`<h2 id="modalTitle">Жетістіктер</h2><div class="achievement-strip">${state.achievements.length?state.achievements.map(x=>`<span class="achievement">🏅 ${x}</span>`).join(''):'<p>Алғашқы миссияны аяқтағанда жетістік ашылады.</p>'}</div>`); }
@@ -186,7 +187,8 @@ function registerProgressTool(){
 
 $('#startBtn').addEventListener('click',()=>beginGame(false));
 $('#continueBtn').addEventListener('click',()=>beginGame(true));
-$('#homeBtn').addEventListener('click',()=>{ $('#gameApp').classList.add('hidden'); $('#intro').classList.remove('hidden'); });
+$('#homeBtn').addEventListener('click',()=>{ $('#gameApp').classList.add('hidden'); $('#intro').classList.remove('hidden'); $('#about').classList.remove('hidden'); window.scrollTo(0, 0); });
+$$('#sidebar a[href^="#"]').forEach(link=>link.addEventListener('click',()=>$('#sidebar').classList.remove('open')));
 $('#soundBtn').addEventListener('click',()=>{ state.sound=!state.sound; saveState(); updateChrome(); if(state.sound) playTone(); });
 $('#menuBtn').addEventListener('click',()=>{ const open=$('#sidebar').classList.toggle('open'); $('#menuBtn').setAttribute('aria-expanded',String(open)); });
 $('#archiveBtn').addEventListener('click',archiveView);
